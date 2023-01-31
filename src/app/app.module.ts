@@ -12,13 +12,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { PageEditionArticleComponent } from './page-edition-article/page-edition-article.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
         AppComponent,
         PageAccueilComponent,
         PageContactComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        PageEditionArticleComponent
     ],
     imports: [
         BrowserModule,
@@ -29,7 +33,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         MatFormFieldModule,
         MatInputModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatIconModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]

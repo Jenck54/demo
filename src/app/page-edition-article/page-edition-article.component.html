@@ -1,0 +1,47 @@
+<h1>Ajouter un article</h1>
+
+<form [formGroup]="formEditionArticle" class="d-flex flex-column">
+    <mat-form-field>
+        <mat-label>Titre</mat-label>
+        <input matInput formControlName="titre">
+        <mat-error *ngIf="formEditionArticle.get('titre')?.hasError('required')">Le titre est obligatoire</mat-error>
+        <mat-error *ngIf="formEditionArticle.get('titre')?.hasError('maxlength')">
+            {{formEditionArticle.get('titre')?.errors?.['maxlength']?.requiredLength}} caractères maximum 
+            ({{formEditionArticle.get('titre')?.errors?.['maxlength']?.actualLength - formEditionArticle.get('titre')?.errors?.['maxlength']?.requiredLength}} en trop)
+        </mat-error>
+        <mat-error *ngIf="formEditionArticle.get('titre')?.hasError('minlength')">
+            {{formEditionArticle.get('titre')?.errors?.['minlength']?.requiredLength}} caractères minimum 
+            (il manque {{formEditionArticle.get('titre')?.errors?.['minlength']?.requiredLength - formEditionArticle.get('titre')?.errors?.['minlength']?.actualLength}} caractères)
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Auteur</mat-label>
+        <input matInput formControlName="auteur">
+        <mat-error *ngIf="formEditionArticle.get('auteur')?.hasError('required')">L'auteur est obligatoire</mat-error>
+        <mat-error *ngIf="formEditionArticle.get('auteur')?.hasError('maxlength')">
+            {{formEditionArticle.get('auteur')?.errors?.['maxlength']?.requiredLength}} caractères maximum 
+            ({{formEditionArticle.get('auteur')?.errors?.['maxlength']?.actualLength - formEditionArticle.get('auteur')?.errors?.['maxlength']?.requiredLength}} en trop)
+        </mat-error>
+        <mat-error *ngIf="formEditionArticle.get('auteur')?.hasError('minlength')">
+            {{formEditionArticle.get('auteur')?.errors?.['minlength']?.requiredLength}} caractères minimum 
+            (il manque {{formEditionArticle.get('auteur')?.errors?.['minlength']?.requiredLength - formEditionArticle.get('auteur')?.errors?.['minlength']?.actualLength}} caractères)
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Décrivez votre problème..." formControlName="description"></textarea>
+        <mat-error *ngIf="formEditionArticle.get('description')?.hasError('required')">La description est obligatoire</mat-error>
+        <mat-error *ngIf="formEditionArticle.get('description')?.hasError('maxlength')">
+            {{formEditionArticle.get('description')?.errors?.['maxlength']?.requiredLength}} caractères maximum 
+            ({{formEditionArticle.get('description')?.errors?.['maxlength']?.actualLength - formEditionArticle.get('description')?.errors?.['maxlength']?.requiredLength}} en trop)
+        </mat-error>
+        <mat-error *ngIf="formEditionArticle.get('description')?.hasError('minlength')">
+            {{formEditionArticle.get('description')?.errors?.['minlength']?.requiredLength}} caractères minimum 
+            (il manque {{formEditionArticle.get('description')?.errors?.['minlength']?.requiredLength - formEditionArticle.get('description')?.errors?.['minlength']?.actualLength}} caractères)
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary" (click)="onSubmit()">Envoyer formulaire</button>
+</form>
