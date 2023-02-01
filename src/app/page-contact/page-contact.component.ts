@@ -15,7 +15,9 @@ export class PageContactComponent {
         "message": ["", [Validators.required, Validators.minLength(10), Validators.maxLength(30)]]
     })
 
-    constructor(private router: Router, private formBuilder: FormBuilder) {}
+    constructor(
+        private router: Router, 
+        private formBuilder: FormBuilder) {}
 
     onSubmit(): void {
 

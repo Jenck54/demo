@@ -13,8 +13,9 @@
         <input matInput formControlName="objet">
         <mat-error *ngIf="formContact.get('objet')?.hasError('required')">L'objet est obligatoire</mat-error>
         <mat-error *ngIf="formContact.get('objet')?.hasError('maxlength')">
-            {{formContact.get('objet')?.errors?.['maxlength']?.requiredLength}} caractères maximum 
-            ({{formContact.get('objet')?.errors?.['maxlength']?.actualLength - formContact.get('objet')?.errors?.['maxlength']?.requiredLength}} en trop)
+            {{formContact.get('objet')?.errors?.['maxlength']?.requiredLength}} caractères maximum
+            ({{formContact.get('objet')?.errors?.['maxlength']?.actualLength -
+            formContact.get('objet')?.errors?.['maxlength']?.requiredLength}} en trop)
         </mat-error>
     </mat-form-field>
 
@@ -23,12 +24,14 @@
         <textarea matInput placeholder="Décrivez votre problème..." formControlName="message"></textarea>
         <mat-error *ngIf="formContact.get('message')?.hasError('required')">Le message est obligatoire</mat-error>
         <mat-error *ngIf="formContact.get('message')?.hasError('maxlength')">
-            {{formContact.get('message')?.errors?.['maxlength']?.requiredLength}} caractères maximum 
-            ({{formContact.get('message')?.errors?.['maxlength']?.actualLength - formContact.get('message')?.errors?.['maxlength']?.requiredLength}} en trop)
+            {{formContact.get('message')?.errors?.['maxlength']?.requiredLength}} caractères maximum
+            ({{formContact.get('message')?.errors?.['maxlength']?.actualLength -
+            formContact.get('message')?.errors?.['maxlength']?.requiredLength}} en trop)
         </mat-error>
         <mat-error *ngIf="formContact.get('message')?.hasError('minlength')">
-            {{formContact.get('message')?.errors?.['minlength']?.requiredLength}} caractères minimum 
-            (il manque {{formContact.get('message')?.errors?.['minlength']?.requiredLength - formContact.get('message')?.errors?.['minlength']?.actualLength}} caractères)
+            {{formContact.get('message')?.errors?.['minlength']?.requiredLength}} caractères minimum
+            (il manque {{formContact.get('message')?.errors?.['minlength']?.requiredLength -
+            formContact.get('message')?.errors?.['minlength']?.actualLength}} caractères)
         </mat-error>
     </mat-form-field>
 

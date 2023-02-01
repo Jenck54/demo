@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Article } from 'src/models/article';
 
 @Component({
@@ -8,26 +11,55 @@ import { Article } from 'src/models/article';
 })
 export class PageAccueilComponent {
 
-    public nomApplication:string = "DEMO";
+    public nomApplication: string = "DEMO";
 
-    public listeArticle: Article[] = [
-        {
-            titre: "Article 1",
-            contenu: "Contenu article 1",
-            auteur: "Moi"
-        },
-        {
-            titre: "Article 2",
-            contenu: "contenu article 2",
-            auteur: "Toi"
-        },
-        {
-            titre: "Article 3",
-            contenu: "contenu article 3",
+    public listeArticle: Article[] = []
+
+    constructor(
+        private http: HttpClient,
+        private snackBar: MatSnackBar,
+        private dialog: MatDialog) { }
+
+    ngOnInit() {
+        this.refresh()
+    }
+
+    refresh() {
+        this.http
+            .get("http://localhost:8080/liste-article")
+            .subscribe(listeArticle => this.listeArticle = listeArticle as Article[])
+        // .subscribe((listeArticle :any) => this.listeArticle = listeArticle)
+    }
+
+    onClickDeleteArticle(idArticle: number | undefined): void {
+        if (idArticle != undefined) {
+            const dialogReponse = this.dialog.open(DialogSupprimerArticle)
+            dialogReponse.afterClosed().subscribe(
+                reponseSuppression => {
+                    if (reponseSuppression) {
+                        this.http.delete("http://localhost:8080/article/" + idArticle).subscribe({
+                            next: (article: any) => {
+                                this.snackBar.open('L\'article "' + article.titre + '" a bien été supprimé', "OK", { duration: 5000 })
+                                this.refresh()
+                            },
+                            error: resultat => {
+                                this.snackBar.open("Une erreur est survenue", "OK", { duration: 5000 })
+                                this.refresh()
+                            }
+                        })
+                    }
+                }
+            )
         }
-    ]
+    }
+}
 
-    onClickBouton(): void {
-        this.nomApplication = "Autre nom";
+@Component({
+    selector: "dialog-supprimer-article",
+    templateUrl: "../dialog-confirm-delete-article.html"
+})
+export class DialogSupprimerArticle {
+    constructor(public dialogRef: MatDialogRef<DialogSupprimerArticle>) {
+
     }
 }
