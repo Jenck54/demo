@@ -50,5 +50,7 @@
         </mat-error>
     </mat-form-field>
 
+    <app-file-selector [parentFormGroup]="formEditionArticle" fileFormControlName="image" [multiple]="true"></app-file-selector>
+
     <button mat-raised-button type="submit" color="primary" (click)="onSubmit()">Envoyer formulaire</button>
 </form>

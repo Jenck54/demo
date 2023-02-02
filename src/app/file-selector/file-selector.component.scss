@@ -1,0 +1,19 @@
+.file-selector-container {
+    background-color: rgb(78, 78, 78);
+    padding: 1em;
+    border-bottom: 1px solid #949494;
+    cursor: pointer;
+
+    .mdc-fab {
+        margin-right: 1em;
+    }
+
+    &:hover {
+        background-color: rgb(90, 86, 86);
+        border-bottom: 1px solid #E9E9E9;
+
+        .mdc-fab {
+                background-color: #7b1fa2;
+            }
+    }
+}

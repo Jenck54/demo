@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { fileValidator } from '../validators/file-validator';
 
 @Component({
     selector: 'app-page-edition-article',
@@ -15,6 +16,7 @@ export class PageEditionArticleComponent {
         "titre": ["", [Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
         "auteur": ["", [Validators.minLength(10), Validators.maxLength(50)]],
         "description": ["", [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+        "image": [null, [fileValidator(["jpg", "png", "gif", "jpeg"])]]
     })
 
     constructor(
